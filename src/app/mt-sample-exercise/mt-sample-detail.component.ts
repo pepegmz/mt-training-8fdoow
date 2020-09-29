@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { SelectedFarmService } from './selected-farm.service';
 import { takeUntil } from 'rxjs/operators';
@@ -9,10 +9,22 @@ import { EditService, ToolbarService, SortService } from '@syncfusion/ej2-angula
   selector: 'mt-sample-detail',
   templateUrl: './mt-sample-detail.component.html',
 })
-export class MtSampleDetailComponent {
+export class MtSampleDetailComponent implements OnInit {
 
-  constructor() {
+  selectedFarm: any;
+
+  constructor(private selectedFarmService: SelectedFarmService) {
   }
+
+  ngOnInit(): void {
+    this.selectedFarmService.getSelectionManager().subscribe((item) => {
+      if (item) {
+        this.selectedFarm = item;
+      }
+    });
+  }
+
+
 
   
 }

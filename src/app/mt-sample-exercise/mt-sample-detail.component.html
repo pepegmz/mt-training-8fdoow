@@ -1,1 +1,23 @@
 <h5 >Farm Selected</h5>
+<!-- <pre>
+  {{ selectedFarm | json }}
+</pre> -->
+<div *ngIf="selectedFarm; else info" class="row mt-2">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">Farm No</th>
+				<th scope="col">Farm Name</th>
+				<th scope="col">Active Date</th>
+			</tr>
+      <tr>
+        <th scope="col">{{ selectedFarm.FarmNo }}</th>
+				<th scope="col">{{ selectedFarm.FarmName }}</th>
+				<th scope="col">{{ selectedFarm.ActiveDate | date: 'MM-dd-yyyy' }}</th>
+      </tr>
+		</thead>
+	</table>
+</div>
+<ng-template #info>
+  No selected rows
+</ng-template>

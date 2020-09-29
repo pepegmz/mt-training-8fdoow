@@ -27,8 +27,8 @@
 <div class="row">
 	<!-- The sf grid should be here -->
   <ng-container *ngIf="dataService.farms$ | async as farms; else loading" >
-    `<ejs-grid [dataSource]='farms.default' [allowPaging]="false" [allowSorting]="true"
-               [allowFiltering]="false" [allowGrouping]="false" [pageSettings]='pageSettings'>
+    `<ejs-grid #grid [dataSource]='farms.default' [allowPaging]="false" [allowSorting]="true"
+               [allowFiltering]="false" [allowGrouping]="false" [pageSettings]='pageSettings' [allowSelection]='true' (rowSelected)='rowSelected($event)'>
                 <e-columns>
                     <e-column field='Id' headerText='ID' textAlign='Center' width=50></e-column>
                     <e-column field='FarmNo' headerText='Number' width=90></e-column>
