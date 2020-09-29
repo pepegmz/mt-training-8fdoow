@@ -18,9 +18,7 @@ export class MtSampleDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedFarmService.getSelectionManager().subscribe((item) => {
-      if (item) {
         this.selectedFarm = item;
-      }
     });
   }
 

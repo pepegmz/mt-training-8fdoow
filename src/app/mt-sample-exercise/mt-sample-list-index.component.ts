@@ -29,12 +29,25 @@ export class MtSampleListIndexComponent implements OnInit {
   }
 
    rowSelected(event) {
-        const selectedrowindex: number[] = this.grid.getSelectedRowIndexes();  // Get the selected row indexes.
-        // alert(selectedrowindex); // To alert the selected row indexes.
-        // const selectedrecords: object[] = this.grid.getSelectedRecords();  // Get the selected records.
-        console.log('get-index', JSON.stringify((this.grid.dataSource as object[])[selectedrowindex]))
+        const selectedrowindex: number[] = this.grid.getSelectedRowIndexes();
+        // console.log('get-index', JSON.stringify((this.grid.dataSource as object[])[selectedrowindex]))
         this.selectedItem = (this.grid.dataSource as object[])[selectedrowindex];
         this.selectedFarmService.setSelection(this.selectedItem);
+    }
+
+    onFilterChange(event) {
+      // console.log('filter-change', event?.target?.value);
+      switch(event?.target?.value) {
+        case '2':
+        this.dataService.getFarmsByNo();
+        break;
+        case '3':
+        this.dataService.getFarmsByDate();
+        break;
+        default:
+        this.dataService.getFarms();
+      }
+      this.selectedFarmService.setSelection(null);
     }
 
 
